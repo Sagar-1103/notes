@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 import {useNavigate} from 'react-router-dom'
 
 export default function Signup(props) {
-
+  const host = process.env.REACT_APP_LINK;
   const [signUpCred,setSignUpCred] =  useState({name:"",email:"",password:"",cpassword:""});
     let navigate  = useNavigate();
     let {name,email,password} = signUpCred;
@@ -14,7 +14,7 @@ export default function Signup(props) {
         props.showAlert("Passwords do not match","danger");
       }
       else {
-          const response = await fetch(`http://localhost:5000/api/auth/createUser`,{
+          const response = await fetch(`${host}/api/auth/createUser`,{
             method:"POST",
             headers:{
               "Content-Type":"application/json"
